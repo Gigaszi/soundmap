@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
+import { MapDataService } from '../map-data.service';
 
 @Component({
   selector: 'app-map',
@@ -21,7 +22,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     L.marker([49.4167849, 8.6676842]), // Zentralmensa
   ];
 
-  constructor() { }
+  constructor(private mapDataService: MapDataService) { }
 
   ngOnInit() {
   }
@@ -38,14 +39,15 @@ export class MapComponent implements OnInit, AfterViewInit {
     L.tileLayer(baseMapURl).addTo(this.map);
   }
 
-  private addMarkers() {
-    // Define arrays for red and blue markers
+  private addMarkers(): void {
+    // Define arrays for markers
     const redMarkers = [this.markers[0], this.markers[1], this.markers[2]];
     const blueMarkers = [this.markers[3], this.markers[4], this.markers[5], this.markers[6], this.markers[7], this.markers[8]];
     const greenMarkers = [this.markers[9]];
 
     // Add red markers with custom red icon
-    redMarkers.forEach(marker => {
+    redMarkers.forEach((marker, index) => {
+      marker.on('click', () => this.handleMarkerClick(index));
       const redIcon = new L.Icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
         iconSize: [25, 41],
@@ -60,7 +62,8 @@ export class MapComponent implements OnInit, AfterViewInit {
     });
 
     // Add blue markers with custom blue icon
-    blueMarkers.forEach(marker => {
+    blueMarkers.forEach((marker, index) => {
+      marker.on('click', () => this.handleMarkerClick(index + redMarkers.length));
       const blueIcon = new L.Icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
         iconSize: [25, 41],
@@ -74,7 +77,8 @@ export class MapComponent implements OnInit, AfterViewInit {
       marker.addTo(this.map);
     });
 
-    greenMarkers.forEach(marker => {
+    greenMarkers.forEach((marker, index) => {
+      marker.on('click', () => this.handleMarkerClick(index + redMarkers.length + blueMarkers.length));
       const greenIcon = new L.Icon({
         iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
         iconSize: [25, 41],
@@ -92,5 +96,11 @@ export class MapComponent implements OnInit, AfterViewInit {
   private centerMap() {
     const bounds = L.latLngBounds(this.markers.map(marker => marker.getLatLng()));
     this.map.fitBounds(bounds);
+  }
+
+  private handleMarkerClick = (markerId: number) => {
+    // Send the selected marker ID to the MapDataService
+    this.mapDataService.setSelectedMarkerId(markerId);
+    console.log(markerId);
   }
 }

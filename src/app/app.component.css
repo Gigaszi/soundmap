@@ -1,0 +1,19 @@
+/* app.component.css */
+
+.container {
+    display: flex;
+    height: 100vh;
+  }
+  
+  .left-half, .right-half {
+    flex: 1;
+  }
+  
+  .left-half {
+    background-color: #f0f0f0; /* Optional: Set background color for left half */
+  }
+  
+  .right-half {
+    padding: 20px; /* Optional: Add padding to the right half */
+  }
+  

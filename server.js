@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const pgp = require('pg-promise')();
+const cors = require('cors');
 const app = express();
 const port = 3000;
 
@@ -13,10 +14,14 @@ const db = pgp({
   port: 5433,
 });
 
+// Middleware to enable CORS
+app.use(cors());
+
 // Middleware to parse JSON requests
 app.use(bodyParser.json());
 
 // Define a route to get image metadata by ID
+app.options('/api/images/:id', cors()); // Enable CORS for the preflight request
 app.get('/api/images/:id', async (req, res) => {
   const imageId = req.params.id;
 

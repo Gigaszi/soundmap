@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { MarkerDetailComponent } from './marker-detail/marker-detail.component';
+import { HttpClientModule } from '@angular/common/http';
 import { MapDataService } from './map-data.service';
 
 @NgModule({
@@ -15,7 +16,8 @@ import { MapDataService } from './map-data.service';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

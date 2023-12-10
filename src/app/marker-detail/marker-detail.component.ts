@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class MarkerDetailComponent implements OnInit {
   selectedMarkerId: number | null = null;
   markerDetails: any; // Adjust the type based on your backend response
+  currentAudio: HTMLAudioElement | undefined;
 
   constructor(
     private mapDataService: MapDataService,
@@ -42,6 +43,22 @@ export class MarkerDetailComponent implements OnInit {
         // Handle error
       }
     );
+    this.playAudio();
     console.log(this.markerDetails);
   }
+
+  playAudio() {
+    // Stop the previous audio if it exists
+    if (this.currentAudio) {
+      this.currentAudio.pause();
+      this.currentAudio.currentTime = 0;
+    }
+
+    // Create a new Audio object and play the MP3 file
+    this.currentAudio = new Audio('../../assets/audios/test1.mp3');
+    this.currentAudio.play();
+  }
 }
+
+
+

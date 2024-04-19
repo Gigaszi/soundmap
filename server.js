@@ -39,6 +39,26 @@ app.get('/api/images/:id', async (req, res) => {
   }
 });
 
+app.options('/api/audios/:id', cors()); // Enable CORS for the preflight request
+
+app.get('/api/audios/:id', async (req, res) => {
+  const audioId = req.params.id;
+
+  try {
+    const audio = await db.oneOrNone('SELECT * FROM soundmap_audios WHERE id = $1', audioId);
+
+    if (audio) {
+      res.json(audio);
+    } else {
+      res.status(404).json({ error: 'Audio not found' });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);

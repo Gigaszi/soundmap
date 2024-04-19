@@ -11,8 +11,8 @@ export class MapComponent implements OnInit, AfterViewInit {
   private map!: L.Map
   markers: L.Marker[] = [
     L.marker([49.41032, 8.69707]),
-    L.marker([49.41, 8.69]),
-    L.marker([49.4092882, 8.6931570]),
+    L.marker([49.4233, 8.69455]),
+    L.marker([49.4192882, 8.6931570]),
     L.marker([49.4121420, 8.7092182]),
     L.marker([49.4035109, 8.7269402]),
     L.marker([49.4023483, 8.6855940]),

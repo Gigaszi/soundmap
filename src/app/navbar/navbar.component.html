@@ -1,0 +1,24 @@
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>home</mat-icon>
+      <span>
+        <a class="link" href="">Home</a>
+      </span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>map</mat-icon>
+      <span>
+        <a class="link" href="/soundmap">Soundmap</a>
+      </span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>copyright</mat-icon>
+      <span>
+        <a class="link" href="/about">Impressum</a>
+      </span>
+    </button>
+  </mat-menu>
+  

@@ -1,0 +1,13 @@
+{"points": [
+{
+    "id": 1,
+    "title_de": "Stauwehr am Karlstor",
+    "description_de": "Das Stauwehr am oberen Ende der Altstadt ähnelt klanglich einem gewaltigen Wasserfall. Sein Klangspektrum reicht von den tiefsten Bässen bis zum Rauschen oberhalb der Hörschwelle. Wer das Wehr überquert und dabei aufmerksam lauscht, wird merken, dass sich der Klang alle paar Meter ändert. Diese Aufnahme wurde an verschiedenen Orten gemacht: einmal am Ufer, einmal in der Mitte des Wehres.",
+    "title_en": "Weir",
+    "description_en": "The dam at the upper end of the old town resembles the sound of a mighty waterfall. Its sound spectrum ranges from the deepest basses to a roar above the threshold of hearing. If you cross the weir and listen carefully, you will notice that the sound changes every few meters. This recording was made at different locations: once on the bank, once in the center of the weir.",
+    "coordinates": [49.41536299780592, 8.717435495163844],
+    "color": "red",
+    "image_paths": ["http://localhost:4200/assets/images/1.jpg"],
+    "audio_path": "http://localhost:4200/assets/audios/1.flac"
+}
+]}

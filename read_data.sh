@@ -25,8 +25,8 @@ echo '{"points": [' > "$OUTPUT_FILE"
 ID=1
 
 # Directories for images and sounds
-IMAGE_DIR="$ROOT_DIR/image"
-SOUND_DIR="$ROOT_DIR/sound"
+IMAGE_DIR="$ROOT_DIR/../image"
+SOUND_DIR="$ROOT_DIR/../sound"
 
 # Create directories if they don't exist
 mkdir -p "$IMAGE_DIR"

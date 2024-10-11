@@ -3,54 +3,44 @@
   <div *ngIf="markerDetails">
     <h2>Marker Details</h2>
     <p>ID: {{ markerDetails[0]?.name }}</p>
-    
+
     <div *ngFor="let image of markerDetails">
       <img [src]="image.file_path" alt="{{ 'Marker Image ' + image.name }}" style="max-width: 300px; max-height: 300px;" />
     </div>
   </div>
 
   <div *ngIf="startInfo">
-  <h1>Willkommen auf der soundmap “Heidelberg hören” (“Listening to Heidelberg”, english version below, please scroll down) 
-  Bitte lesen Sie vor einem ersten Besuch der soundmap diese kurze Einleitung!</h1>
-  <p>Was ist eine soundmap?</p>
-  <p>Eine soundmap ist eine akustische Landkarte oder ein akustischer Stadtplan eines Ortes. “Heidelberg Hören” bietet Ihnen die Möglichkeit, die Stadt Heidelberg mit den Ohren zu erkunden und zu entdecken; statt Sehenswürdigkeiten finden Sie hier Hörenswürdigkeiten, die unterschiedlichste klangliche Facetten der Stadt zeigen.</p>
-  <p>Wie ist die Soundmap aufgebaut?</p>
-  <p>Über den Stadtplan verteilt finden Sie kleine Markierungen /flags. Wenn Sie eine davon anclicken, sehen Sie ein kleines Bild des jeweiligen Ortes, einen kurzen Text dazu und einen weiteren “button” zum Klangbild des Ortes – durch erneutes anclicken öffnet sich eine Audiodatei mit dem Klang des Ortes.</p>
-  <p>Die Orte sind in drei Kategorien unterteilt, die sich in den Farben der flags unterscheiden:</p>
-  <ol>
-    <li>Öffentliche Orte (rot): hier hören Sie beispielsweise, wie es auf dem Heidelberger Schloss klingt, welches Stimmen- und Sprachengewirr man in der langen Fußgängerzone hört, die Stille-Oase im Hof des Kurpfälzischen Museums, das Rumpeln der historischen Bergbahn und die klangliche Begegnung der Kulturen auf der Neckarwiese. Oder Sie Sie belauschen die Scharen von Krähen und Halsbandsittichen auf ihren Schlafbäumen.</li>
-    <li>Veranstaltungen im Freien (grün): Hier können Sie akustisch spazieren gehen auf Festen, Märkten, zum Feuerwerk der Heidelberger Schlossbeleuchtung oder zu Sportereignissen</li>
-    <li>“verborgene Klänge” (blau): diese Klänge muss man erst suchen; Sie können hier akustische Ausflüge unternehmen in kleine Werkstätten, unter die Erde, in einen Bienenkorb – oder auch einfach eine Straßenbahnfahrt unternehmen.</li>
-  </ol>
-  <p>Wir empfehlen, die Aufnahmen mit Stereo-Kopfhörern guter Qualität zu hören, da sie allesamt mit guter Aufnahmetechnik erstellt wurden und z.T. (durch sog. binaurale Aufnahmetechnik) ein sehr reales, räumliches Klangbild haben, das aber nur mit Kopfhörern erfahren werden kann</p>
-  <p>Idee, Texte und Aufnahmen: Axel Mecke</p>
-  <p>Webdesign und Programmierung: Levi Szamek</p>
-  <p>Weitere Informationen zum Hintergrund der soundmap und zur verwendeten Aufnahmetechnik finden Sie im Menü.</p>
-  <p>Und schließlich: vermissen Sie den Klang eines besonderen Ortes? Haben Sie Anregungen für weitere Hörenswürdigkeiten? Dann schreiben Sie mir: <a href="mailto:axel.mecke@t-online.de">axel.mecke&#64;t-online.de</a> . Diese Seite wird fortlaufend weiter entwickelt.</p>
+    <h1>{{ 'markerDetail.welcome_heading' | translate }}</h1>
+    <h1>{{ 'imprint.title' | translate }}</h1>
+    <p>{{ 'markerDetail.intro_note' | translate }}</p>
+    <p>{{ 'markerDetail.what_is_soundmap' | translate }}</p>
+    <p>{{ 'markerDetail.soundmap_description' | translate }}</p>
+    <p>{{ 'markerDetail.how_is_soundmap_structured' | translate }}</p>
+    <p>{{ 'markerDetail.structure_description' | translate }}</p>
+    <p>{{ 'markerDetail.categories_heading' | translate }}</p>
+    <ol>
+      <li>{{ 'markerDetail.public_places' | translate }}</li>
+      <li>{{ 'markerDetail.outdoor_events' | translate }}</li>
+      <li>{{ 'markerDetail.hidden_sounds' | translate }}</li>
+    </ol>
+    <p>{{ 'markerDetail.headphone_recommendation' | translate }}</p>
+    <p>{{ 'markerDetail.credits.idea' | translate }}</p>
+    <p>{{ 'markerDetail.credits.webdesign' | translate }}</p>
+    <p>{{ 'markerDetail.contact' | translate }}</p>
   </div>
 
   <button mat-icon-button (click)="showText()">
     <mat-icon>info</mat-icon>
   </button>
   <div *ngIf="showInfo">
-    <h3>Aufnahme-Technische Informationen</h3>
-    <h4>Aufnahmegeräte:</h4>
+    <h3>{{ 'markerDetail.recording_info_heading' | translate }}</h3>
+    <h4>{{ 'markerDetail.equipment.title' | translate }}</h4>
     <ul>
-      <li>Zoom H4n (24 bit Aufnahmen)</li>
-      <li>Zoom H6 (24 bit Aufnahmen)</li>
-      <li>Zoom F3 (32 bit float Aufnahmen, gerendert auf 24 bit)</li>
-      <li>Sound devices Mixpre 6ii (32 bit float Aufnahmen, gerendert auf 24 bit)</li>
+      <li *ngFor="let device of 'markerDetail.equipment.devices' | translate">{{ device }}</li>
     </ul>
-    <h4>Mikrofone:</h4>
+    <h4>{{ 'markerDetail.microphones.title' | translate }}</h4>
     <ul>
-      <li>Audio-Technica AT 8022</li>
-      <li>Sennheiser MKH 8040 (in ORTF)</li>
-      <li>Clippy em 272 (in AB, z.T. in “tree ears”)</li>
-      <li>Ohrwurm 3D (binaurale Aufnahmen)</li>
-      <li>DPA 4560 core (binaurale Aufnahmen)</li>
-      <li>Immersive soundscapes earsite binaural (binaurale Aufnahmen)</li>
-      <li>JRF contact pro (Aufnahmen mit Kontaktmikrofonen)</li>
+      <li *ngFor="let mic of 'markerDetail.microphones.list' | translate">{{ mic }}</li>
     </ul>
   </div>
 </div>
-

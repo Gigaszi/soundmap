@@ -6,13 +6,15 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {TranslateService} from "@ngx-translate/core";
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-marker-detail',
   templateUrl: './marker-detail.component.html',
   styleUrls: ['./marker-detail.component.css'],
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatIconModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule, TranslateModule],
 })
 export class MarkerDetailComponent implements OnInit {
   selectedMarkerId: number | null = null;
@@ -26,10 +28,13 @@ export class MarkerDetailComponent implements OnInit {
     this.showInfo = !this.showInfo;
   }
 
-  constructor(
-    private mapDataService: MapDataService,
-    private httpClient: HttpClient
-  ) {}
+  constructor(private translate: TranslateService, private mapDataService: MapDataService,
+              private httpClient: HttpClient) {
+    // Set default language
+    this.translate.setDefaultLang('de');
+    // Use a language
+    this.translate.use('de');
+  }
 
   ngOnInit() {
     // Subscribe to changes in the selected marker ID

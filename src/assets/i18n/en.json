@@ -1,0 +1,65 @@
+{
+  "COMMON-BUTTON_SCROLL": "Scroll to Bottom",
+  "COMMON-BUTTON_SOUND_MAP": "To the Sound Map",
+  "COMMON-EMAIL_CONTACT": "info@audiofokus.net",
+  "HOME-HEADER": "The Listening Adventure - Why I Built This Sound Map",
+  "HOME-REASON_TITLE": "There are two simple reasons that I'd like to mention for creating a sound map:",
+  "HOME-PERSONAL_REASON": "Firstly, a personal reason: I passionately enjoy recording sounds from nature and urban spaces; the sound map gives me the opportunity to pursue this passion in everyday places in \"my\" city - which I simply find great fun.",
+  "HOME-LOCAL_REASON": "Secondly, a local reason: Sound maps exist for many cities around the world, and even for entire countries (more on this under \"Links\"); they offer a wonderful opportunity to explore a place through the ears. I believe Heidelberg also deserves a sound map.",
+  "HOME-FOUNDER_REASON": "But there is also another framework into which I place the sound map. I am conducting a number of projects aimed at building bridges for people towards a conscious and differentiated listening in everyday life. Why am I doing this?",
+  "HOME-BACKGROUND": "The background: biographical and cultural-historical changes in listening",
+  "HOME-DEVELOPMENT": "Is this development reversible?",
+  "HOME-CONTACT_INFO": "Do you have questions, suggestions, or your own thoughts on these backgrounds and listening projects? Then feel free to write to me: ",
+  "imprint": {
+    "title": "Imprint",
+    "operated_by": "This website is operated by [Your Company Name].",
+    "company_name": "[Your Company Name]",
+    "address": "[Your Address]",
+    "email": "Email: [Your Email]",
+    "phone": "Phone: [Your Phone Number]",
+    "vat_id": "VAT ID: [Your VAT ID (if applicable)]",
+    "responsible_person": "Responsible for the content: [Your Name]",
+    "legal_info": "[Optional: Register entry, chamber affiliation, or other legal information]"
+  },
+  "markerDetail": {
+    "welcome_heading": "Welcome to the soundmap \"Listening to Heidelberg\"",
+    "intro_note": "Please read this brief introduction before you first visit the soundmap!",
+    "what_is_soundmap": "What is a soundmap?",
+    "soundmap_description": "A soundmap is an acoustic map or an acoustic city plan of a location. \"Listening to Heidelberg\" offers you the opportunity to explore and discover the city of Heidelberg with your ears. Instead of visual impressions, you will find acoustic sites that are worth hearing, showcasing various auditory facets of the city.",
+    "how_is_soundmap_structured": "How is the soundmap structured?",
+    "structure_description": "Distributed across the city map, you will find small markers/flags. When you click on one of them, you will see a small picture of the respective location, a brief text about it, and another button for the characteristic sound of the place - clicking again will open an audio file with the sound of the location.",
+    "categories_heading": "The locations are divided into three categories, distinguished by the colors of the flags:",
+    "public_places": "Public places (red): Here you can hear, for example, the soundscape of the Heidelberg Castle, the blend of voices and languages one hears in the long pedestrian zone, the quiet oasis in the courtyard of the \"Kurpfälzische Museum\", the rumble of the historic \"Bergbahn\" and the auditory encounter of cultures on the Neckar meadow. Or you can eavesdrop on the flocks of crows and ring-necked parakeets on their roosting trees.",
+    "outdoor_events": "Outdoor events (green): Here you can take an acoustic stroll at festivals, markets, at the fireworks of the Heidelberg Castle illumination, or at sports events.",
+    "hidden_sounds": "\"Hidden sounds\" (blue): These sounds must be sought out; you can take acoustic excursions here to small workshops, under the ground, into a beehive – or simply take a tram ride.",
+    "headphone_recommendation": "We recommend listening to the recordings with high-quality stereo headphones. They were all created with good recording technology and partly (using so-called binaural recording technology) have a very realistic, spatial sound image that can only be experienced with headphones.",
+    "credits": {
+      "idea": "Idea, texts and recordings: Axel Mecke",
+      "webdesign": "Webdesign and programming: Levi Szamek"
+    },
+    "contact": "And finally: Do you miss the sound of a special place? Do you have suggestions for more acoustic sites worth listening to? Then please contact me: <a href=\"mailto:axel.mecke@t-online.de\">axel.mecke&#64;t-online.de</a> . This page will continue to be developed.",
+    "show_info_button": "Recording Technical Information",
+    "recording_info_heading": "Recording Technical Information",
+    "equipment": {
+      "title": "Recording Devices:",
+      "devices": [
+        "Zoom H4n (24 bit recordings)",
+        "Zoom H6 (24 bit recordings)",
+        "Zoom F3 (32 bit float recordings, rendered to 24 bit)",
+        "Sound devices Mixpre 6ii (32 bit float recordings, rendered to 24 bit)"
+      ]
+    },
+    "microphones": {
+      "title": "Microphones:",
+      "list": [
+        "Audio-Technica AT 8022",
+        "Sennheiser MKH 8040 (in ORTF)",
+        "Clippy em 272 (in AB, sometimes in \"tree ears\")",
+        "Ohrwurm 3D (binaural recordings)",
+        "DPA 4560 core (binaural recordings)",
+        "Immersive soundscapes earsite binaural (binaural recordings)",
+        "JRF contact pro (contact microphone recordings)"
+      ]
+    }
+  }
+}

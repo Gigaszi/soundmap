@@ -16,16 +16,13 @@ interface CustomMarker {
 export class MapComponent implements OnInit, AfterViewInit {
   private map!: L.Map;
   markers: CustomMarker[] = [
-    { color: 'red', name: 'Marker 1', marker: L.marker([49.41032, 8.69707]) },
-    { color: 'red', name: 'Marker 2', marker: L.marker([49.4233, 8.69455]) },
-    { color: 'red', name: 'Marker 3', marker: L.marker([49.4192882, 8.6931570]) },
-    { color: 'blue', name: 'Marker 4', marker: L.marker([49.4121420, 8.7092182]) },
-    { color: 'blue', name: 'Marker 5', marker: L.marker([49.4035109, 8.7269402]) },
-    { color: 'blue', name: 'Marker 6', marker: L.marker([49.4023483, 8.6855940]) },
-    { color: 'blue', name: 'Marker 7', marker: L.marker([49.4046826, 8.6760974]) },
-    { color: 'blue', name: 'Marker 8', marker: L.marker([49.4092882, 8.6931570]) },
-    { color: 'blue', name: 'Marker 9', marker: L.marker([49.4281053, 8.6860676]) },
-    { color: 'green', name: 'Zentralmensa', marker: L.marker([49.4167849, 8.6676842]) }, // Zentralmensa
+    { color: 'red', name: 'Mühlbach', marker: L.marker([49.4315759,8.6961048]) },
+    { color: 'red', name: 'Bienenstöcke am Gaiberg', marker: L.marker([49.370149,8.7228557]) },
+    { color: 'red', name: 'Halfpipes Ernst-Walz-Brücke', marker: L.marker([49.4105862,8.6746469]) },
+    { color: 'blue', name: 'Bonifatiuskirche Weststadt', marker: L.marker([49.4036774,8.6857582]) },
+    { color: 'blue', name: 'Christuskirche', marker: L.marker([49.4018107,8.6860399]) },
+    { color: 'blue', name: 'Mühltal (Sonnenaufgang)', marker: L.marker([49.4318874,8.7027183]) },
+    { color: 'blue', name: 'Eisbahn am Karlsplatz', marker: L.marker([49.4123146,8.7129705]) },
   ];
 
   constructor(private mapDataService: MapDataService) { }

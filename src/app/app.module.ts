@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MapComponent } from './map/map.component';
 import { MarkerDetailComponent } from './marker-detail/marker-detail.component';
-import { HttpClientModule } from '@angular/common/http';
 import { MapDataService } from './map-data.service';
 import { NavbarComponent } from './navbar/navbar.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -13,6 +12,13 @@ import { HomeComponent } from './home/home.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { SoundmapComponent } from './soundmap/soundmap.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
 
 
 @NgModule({
@@ -29,7 +35,15 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
     HttpClientModule,
     NavbarComponent,
     MarkerDetailComponent,
-    ScrollingModule
+    ScrollingModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     provideAnimationsAsync()

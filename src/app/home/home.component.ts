@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
@@ -45,9 +46,17 @@ scrollToBottom() {
   console.log("here")
   const currentDiv = document.querySelector('scroll-container') as HTMLElement;
   currentDiv.scrollTop = currentDiv.scrollHeight;
-  
+
 }
-constructor(private router: Router) { }
+  constructor(private router: Router, private translate: TranslateService) {
+    // Set the default language if necessary
+    this.translate.setDefaultLang('de'); // Set default language to German
+
+    // Fetch the translations for the current language
+    this.translate.get('home').subscribe((translations: any) => {
+      this.homeTextArray = translations.texts; // Assuming your translation keys match the structure
+    });
+  }
 
   redirectToAnotherPage() {
     // Navigate to another page when the button is clicked

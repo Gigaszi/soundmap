@@ -1,12 +1,14 @@
 <app-navbar></app-navbar>
 <div class="container">
-    <h1>Imprint</h1>
-    <p>This website is operated by [Your Company Name].</p>
-    <p>[Your Company Name]</p>
-    <p>[Your Address]</p>
-    <p>Email: [Your Email]</p>
-    <p>Phone: [Your Phone Number]</p>
-    <p>VAT ID: [Your VAT ID (if applicable)]</p>
-    <p>Responsible for the content: [Your Name]</p>
-    <p>[Optional: Register entry, chamber affiliation, or other legal information]</p>
-  </div>
+  <h1>{{ 'imprint.title' | translate }}</h1>
+  <p>{{ 'imprint.operated_by' | translate }}</p>
+  <p>{{ 'imprint.company_name' | translate }}</p>
+  <p>{{ 'imprint.address' | translate }}</p>
+  <p>{{ 'imprint.email' | translate }}</p>
+  <p>{{ 'imprint.phone' | translate }}</p>
+  <p>{{ 'imprint.vat_id' | translate }}</p>
+  <p>{{ 'imprint.responsible_person' | translate }}</p>
+  <p>{{ 'imprint.legal_info' | translate }}</p>
+</div>
+<button (click)="switchLanguage('en')">English</button>
+<button (click)="switchLanguage('de')">Français</button>

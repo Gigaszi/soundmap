@@ -11,7 +11,6 @@
 
   <div *ngIf="startInfo">
     <h1>{{ 'markerDetail.welcome_heading' | translate }}</h1>
-    <h1>{{ 'imprint.title' | translate }}</h1>
     <p>{{ 'markerDetail.intro_note' | translate }}</p>
     <p>{{ 'markerDetail.what_is_soundmap' | translate }}</p>
     <p>{{ 'markerDetail.soundmap_description' | translate }}</p>
@@ -26,7 +25,8 @@
     <p>{{ 'markerDetail.headphone_recommendation' | translate }}</p>
     <p>{{ 'markerDetail.credits.idea' | translate }}</p>
     <p>{{ 'markerDetail.credits.webdesign' | translate }}</p>
-    <p>{{ 'markerDetail.contact' | translate }}</p>
+    <p>{{ 'markerDetail.contact' | translate }}  <a href="mailto:axel.mecke@t-online.de">axel.mecke&#64;t-online.de</a>.</p>
+    <p>{{ 'markerDetail.developing' | translate }}</p>
   </div>
 
   <button mat-icon-button (click)="showText()">

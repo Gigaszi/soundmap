@@ -1,3 +1,8 @@
 .mat-menu-panel a {
   text-decoration: none;
 }
+
+button img {
+  vertical-align: middle;
+  border-radius: 3px;
+}

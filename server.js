@@ -58,6 +58,17 @@ app.get('/api/audios/:id', async (req, res) => {
   }
 });
 
+app.options('/api/points', cors()); // Enable CORS for the preflight request
+app.get('/api/points', async (req, res) => {
+  try {
+    const points = await db.manyOrNone('SELECT * FROM soundmap_points');
+    res.json(points);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
 
 // Start the server
 app.listen(port, () => {

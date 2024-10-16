@@ -2,7 +2,6 @@
   <div class="background-image"></div>
   <app-navbar></app-navbar>
   <div class="content-container">
-    <button (click)="scrollToBottom()">{{ 'BUTTON_SCROLL' | translate }}</button>
     <cdk-virtual-scroll-viewport itemSize="5" class="scroll-container">
       <h1>{{ 'HOME-HEADER' | translate }}</h1>
       <p>{{ 'HOME-REASON_TITLE' | translate }}</p>
@@ -10,7 +9,13 @@
       <p>{{ 'HOME-LOCAL_REASON' | translate }}</p>
       <p>{{ 'HOME-FOUNDER_REASON' | translate }}</p>
       <h2>{{ 'HOME-BACKGROUND' | translate }}</h2>
+      <p>{{ 'HOME-TEXT' | translate }}</p>
+      <p>{{ 'HOME-TEXT2' | translate }}</p>
+      <p>{{ 'HOME-TEXT3' | translate }}</p>
       <p>{{ 'HOME-DEVELOPMENT' | translate }}</p>
+      <p>{{ 'HOME-TEXT4' | translate }}</p>
+      <p>{{ 'HOME-TEXT5' | translate }}<a href="www.audiofokus.net">www.audiofokus.net</a>{{ 'HOME-TEXT6' | translate }}</p>
+      <p>{{ 'HOME-TEXT7' | translate }}</p>
       <p>{{ 'HOME-CONTACT_INFO' | translate }} <a href="mailto:info@audiofokus.net">info&#64;audiofokus.net</a>.</p>
     </cdk-virtual-scroll-viewport>
     <button (click)="redirectToAnotherPage()">{{ 'BUTTON_SOUND_MAP' | translate }}</button>

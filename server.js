@@ -4,6 +4,8 @@ const pgp = require('pg-promise')();
 const cors = require('cors');
 const app = express();
 const port = 3000;
+const fs = require('fs').promises;
+const path = require('path');
 
 // Database configuration
 const db = pgp({
@@ -61,7 +63,12 @@ app.get('/api/audios/:id', async (req, res) => {
 app.options('/api/points', cors()); // Enable CORS for the preflight request
 app.get('/api/points', async (req, res) => {
   try {
-    const points = await db.manyOrNone('SELECT * FROM soundmap_points');
+    // Read the points from the JSON file
+    const filePath = path.join(__dirname, 'points.json'); // Adjust the path if necessary
+    const data = await fs.readFile(filePath, 'utf8');
+    const points = JSON.parse(data).points; // Parse the JSON data
+
+    // Respond with the points
     res.json(points);
   } catch (error) {
     console.error(error);

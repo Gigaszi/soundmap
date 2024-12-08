@@ -1,18 +1,16 @@
 <!-- marker-detail.component.html -->
 <div>
   <div *ngIf="markerDetails">
-    <h2>Marker Details</h2>
     <!-- Display Marker Name (Title) -->
-    <p><strong>{{ markerDetails.name }}</strong></p>
+    <h2>{{ getTranslatedTitle() }}</h2>
 
-    <!-- Display Marker Description -->
-    <p>{{ markerDetails.description_en || markerDetails.description_de }}</p>
+    <!-- Display Marker Description based on language -->
+    <p>{{ getTranslatedDescription() }}</p>
 
     <!-- Display Images -->
     <div *ngIf="markerDetails.image_paths && markerDetails.image_paths.length > 0">
-      <h3>Images</h3>
       <div *ngFor="let image of markerDetails.image_paths">
-        <img [src]="image" alt="Marker Image" style="max-width: 300px; max-height: 300px;" />
+        <img [src]="image" alt="Marker Image" class="details-image"/>
       </div>
     </div>
   </div>

@@ -5,3 +5,8 @@
     border: 1px solid #000;
     /* Set overflow to auto to enable scrolling if content exceeds the fixed size */
 }
+
+.details-image {
+  max-width: 100%;
+  height: auto;
+}

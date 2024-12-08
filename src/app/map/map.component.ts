@@ -5,7 +5,7 @@ import { MapDataService } from '../map-data.service';
 
 interface CustomMarker {
   color: string;
-  name: string;
+  name_de: string;
   marker: L.Marker;
 }
 
@@ -51,7 +51,7 @@ export class MapComponent implements OnInit, AfterViewInit {
           // Map the points to markers
           this.markers = points.map((point) => ({
             color: point.color,
-            name: point.title_en,
+            name_de: point.title_de,
             marker: L.marker(point.coordinates),
           }));
 

@@ -85,4 +85,16 @@ export class MarkerDetailComponent implements OnInit {
     this.currentAudio = new Audio(audioPath);
     this.currentAudio.play().catch((err) => console.error('Error playing audio:', err));
   }
+
+  getTranslatedTitle(): string {
+    return this.translate.currentLang === 'en'
+      ? this.markerDetails.title_en
+      : this.markerDetails.title_de;
+  }
+
+  getTranslatedDescription(): string {
+    return this.translate.currentLang === 'en'
+      ? this.markerDetails.description_en
+      : this.markerDetails.description_de;
+  }
 }

@@ -1,11 +1,19 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
+import { HttpClient } from '@angular/common/http';
 import { MapDataService } from '../map-data.service';
 
 interface CustomMarker {
   color: string;
   name: string;
   marker: L.Marker;
+}
+
+interface Point {
+  color: string;
+  title_en: string;
+  title_de: string;
+  coordinates: [number, number];
 }
 
 @Component({
@@ -15,31 +23,53 @@ interface CustomMarker {
 })
 export class MapComponent implements OnInit, AfterViewInit {
   private map!: L.Map;
-  markers: CustomMarker[] = [
-    { color: 'red', name: 'Mühlbach', marker: L.marker([49.4315759,8.6961048]) },
-    { color: 'red', name: 'Bienenstöcke am Gaiberg', marker: L.marker([49.370149,8.7228557]) },
-    { color: 'red', name: 'Halfpipes Ernst-Walz-Brücke', marker: L.marker([49.4105862,8.6746469]) },
-    { color: 'blue', name: 'Bonifatiuskirche Weststadt', marker: L.marker([49.4036774,8.6857582]) },
-    { color: 'blue', name: 'Christuskirche', marker: L.marker([49.4018107,8.6860399]) },
-    { color: 'blue', name: 'Mühltal (Sonnenaufgang)', marker: L.marker([49.4318874,8.7027183]) },
-    { color: 'blue', name: 'Eisbahn am Karlsplatz', marker: L.marker([49.4123146,8.7129705]) },
-  ];
+  markers: CustomMarker[] = [];
 
-  constructor(private mapDataService: MapDataService) { }
+  constructor(
+    private httpClient: HttpClient,
+    private mapDataService: MapDataService
+  ) {}
 
-  ngOnInit() {
-  }
+  async ngOnInit() {
+    await this.loadMarkersFromJson('assets/points.json');
 
-  ngAfterViewInit() {
     this.initializeMap();
     this.addMarkers();
     this.centerMap();
   }
 
+  ngAfterViewInit() {}
+
+  private loadMarkersFromJson(jsonPath: string): Promise<void> {
+    console.log('Loading markers from:', jsonPath);
+
+    return new Promise<void>((resolve, reject) => {
+      this.httpClient.get<{ points: Point[] }>(jsonPath).subscribe({
+        next: (jsonData) => {
+          const points = jsonData.points;
+
+          // Map the points to markers
+          this.markers = points.map((point) => ({
+            color: point.color,
+            name: point.title_en,
+            marker: L.marker(point.coordinates),
+          }));
+
+          console.log('Markers loaded:', this.markers);
+          resolve();
+        },
+        error: (error) => {
+          console.error('Error loading markers:', error);
+          reject(error);
+        },
+      });
+    });
+  }
+
   private initializeMap() {
-    const baseMapURl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
-    this.map = L.map('map');
-    L.tileLayer(baseMapURl).addTo(this.map);
+    const baseMapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    this.map = L.map('map').setView([0, 0], 2); // Set initial view
+    L.tileLayer(baseMapUrl).addTo(this.map);
   }
 
   private addMarkers(): void {
@@ -61,13 +91,23 @@ export class MapComponent implements OnInit, AfterViewInit {
   }
 
   private centerMap() {
-    const bounds = L.latLngBounds(this.markers.map(marker => marker.marker.getLatLng()));
+    console.log('Centering map on markers:', this.markers);
+    const latLngArray = this.markers.map((customMarker) => {
+      const latLng = customMarker.marker.getLatLng();
+      return latLng;
+    });
+
+    const bounds = L.latLngBounds(latLngArray);
+
     this.map.fitBounds(bounds);
   }
+
+
+
 
   private handleMarkerClick = (markerId: number) => {
     // Send the selected marker ID to the MapDataService
     this.mapDataService.setSelectedMarkerId(markerId);
-    console.log(markerId);
-  }
+    console.log('Clicked marker ID:', markerId);
+  };
 }

@@ -1,13 +1,11 @@
-// marker-detail.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { MapDataService } from '../map-data.service';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {TranslateService} from "@ngx-translate/core";
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { TranslateService } from '@ngx-translate/core';
 import { TranslateModule } from '@ngx-translate/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-marker-detail',
@@ -18,29 +16,30 @@ import { TranslateModule } from '@ngx-translate/core';
 })
 export class MarkerDetailComponent implements OnInit {
   selectedMarkerId: number | null = null;
-  markerDetails: any; // Adjust the type based on your backend response
+  markerDetails: any;
   currentAudio: HTMLAudioElement | undefined;
-  audioData: any;
   showInfo: boolean = false;
   startInfo: boolean = true;
+  markersData: any[] = [];
 
   showText() {
     this.showInfo = !this.showInfo;
   }
 
-  constructor(private translate: TranslateService, private mapDataService: MapDataService,
-              private httpClient: HttpClient) {
-    // Set default language
+  constructor(
+    private translate: TranslateService,
+    private mapDataService: MapDataService,
+    private httpClient: HttpClient
+  ) {
     this.translate.setDefaultLang('de');
-    // Use a language
     this.translate.use('de');
   }
 
   ngOnInit() {
-    // Subscribe to changes in the selected marker ID
+    this.loadMarkersData();
+
     this.mapDataService.selectedMarkerId$.subscribe((markerId) => {
       this.selectedMarkerId = markerId;
-      // Fetch data from the backend based on markerId and update the component
       if (this.selectedMarkerId !== null) {
         this.fetchMarkerDetails(this.selectedMarkerId);
         this.startInfo = false;
@@ -48,48 +47,39 @@ export class MarkerDetailComponent implements OnInit {
     });
   }
 
-  fetchMarkerDetails(markerId: number): void {
-    const apiUrlImage = `http://localhost:3000/api/images/${markerId}`;
-    const apiUrlSound = `http://localhost:3000/api/audios/${markerId}`;
+  loadMarkersData() {
+    const jsonFilePath = 'assets/points.json';
 
-    this.httpClient.get(apiUrlImage).subscribe(
+    this.httpClient.get(jsonFilePath).subscribe(
       (data: any) => {
-        // Handle the data received from the backend
-        this.markerDetails = data;
-
-        // Fetch audio data after image data
-        this.httpClient.get(apiUrlSound).subscribe(
-          (audioData: any) => {
-            // Handle the audio data received from the backend
-            this.audioData = audioData;
-
-            // Play audio after both image and audio data are fetched
-            this.playAudio();
-          },
-          (audioError) => {
-            console.error(audioError);
-            // Handle audio error
-          }
-        );
+        this.markersData = data.points;
+        console.log('Markers data loaded:', this.markersData);
       },
       (error) => {
-        console.error(error);
-        // Handle image error
+        console.error('Error loading markers data:', error);
       }
     );
   }
 
-  playAudio() {
-    // Stop the previous audio if it exists
+  fetchMarkerDetails(markerId: number): void {
+    this.markerDetails = this.markersData.find((marker) => marker.id === markerId);
+
+    if (this.markerDetails) {
+      console.log('Marker Details:', this.markerDetails);
+
+      this.playAudio(this.markerDetails.audio_path);
+    } else {
+      console.error('Marker not found!');
+    }
+  }
+
+  playAudio(audioPath: string) {
     if (this.currentAudio) {
       this.currentAudio.pause();
       this.currentAudio.currentTime = 0;
     }
 
-    // Create a new Audio object and play the MP3 file
-    console.log(this.audioData);
-    this.currentAudio = new Audio(this.audioData.file_path);
-    console.log(this.currentAudio);
-    this.currentAudio.play();
+    this.currentAudio = new Audio(audioPath);
+    this.currentAudio.play().catch((err) => console.error('Error playing audio:', err));
   }
 }

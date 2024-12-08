@@ -2,12 +2,21 @@
 <div>
   <div *ngIf="markerDetails">
     <h2>Marker Details</h2>
-    <p>ID: {{ markerDetails[0]?.name }}</p>
+    <!-- Display Marker Name (Title) -->
+    <p><strong>{{ markerDetails.name }}</strong></p>
 
-    <div *ngFor="let image of markerDetails">
-      <img [src]="image.file_path" alt="{{ 'Marker Image ' + image.name }}" style="max-width: 300px; max-height: 300px;" />
+    <!-- Display Marker Description -->
+    <p>{{ markerDetails.description_en || markerDetails.description_de }}</p>
+
+    <!-- Display Images -->
+    <div *ngIf="markerDetails.image_paths && markerDetails.image_paths.length > 0">
+      <h3>Images</h3>
+      <div *ngFor="let image of markerDetails.image_paths">
+        <img [src]="image" alt="Marker Image" style="max-width: 300px; max-height: 300px;" />
+      </div>
     </div>
   </div>
+
 
   <div *ngIf="startInfo">
     <h1>{{ 'markerDetail.welcome_heading' | translate }}</h1>

@@ -55,7 +55,7 @@ export class MapComponent implements OnInit, AfterViewInit {
             marker: L.marker(point.coordinates),
           }));
 
-          console.log('Markers loaded:', this.markers);
+          console.log('Markers loaded');
           resolve();
         },
         error: (error) => {

@@ -41,10 +41,13 @@ export class MarkerDetailComponent implements OnInit {
     this.mapDataService.selectedMarkerId$.subscribe((markerId) => {
       this.selectedMarkerId = markerId;
       if (this.selectedMarkerId !== null) {
+        console.log('Selected Marker ID:', this.startInfo);
         this.fetchMarkerDetails(this.selectedMarkerId);
         this.startInfo = false;
       }
     });
+    console.log('MarkerDetailComponent initialized:', this.selectedMarkerId);
+    console.log(this.startInfo);
   }
 
   loadMarkersData() {

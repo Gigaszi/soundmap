@@ -75,7 +75,15 @@ export class MapComponent implements OnInit, AfterViewInit {
   private addMarkers(): void {
     this.markers.forEach((customMarker, index) => {
       const marker = customMarker.marker;
+
+      marker.bindTooltip(customMarker.name_de, {
+        permanent: false, // Tooltip appears on hover only
+        direction: 'top', // Position the tooltip above the marker
+        className: 'custom-tooltip', // Optional: add a custom class for styling
+      });
+
       marker.on('click', () => this.handleMarkerClick(index));
+
       const iconUrl = `https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-${customMarker.color}.png`;
       const customIcon = new L.Icon({
         iconUrl: iconUrl,

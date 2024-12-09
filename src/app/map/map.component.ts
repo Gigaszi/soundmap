@@ -76,10 +76,16 @@ export class MapComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private initializeMap() {
-    const baseMapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    this.map = L.map('map').setView([0, 0], 2); // Set initial view
-    L.tileLayer(baseMapUrl).addTo(this.map);
+  private initializeMap(): void {
+    this.map = L.map('map').setView([0, 0], 2);
+
+    var CartoDB_Voyager = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 20
+    });
+
+    CartoDB_Voyager.addTo(this.map);
   }
 
   private addMarkers(): void {

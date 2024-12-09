@@ -204,7 +204,7 @@
     "title_en": "Garden in the courtyard of the \"Kurpfälzisches Museum\"",
     "description_en": "The garden in the courtyard of the “Kurpfälzische Museum” is an oasis of tranquility in the middle of the city, a good place to rest your ears. On this recording you can hear the path from the busy hum of the pedestrian zone to the interior of the garden and finally back again, passing a friendly fountain each time.",
     "coordinates": [49.41148140631605, 8.702878571475676],
-    "color": "rot",
+    "color": "red",
     "image_paths": ["http://localhost:4200/assets/images/20.jpg"],
     "audio_path": "http://localhost:4200/assets/audios/20.flac"
 },

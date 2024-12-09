@@ -3,6 +3,7 @@ import * as L from 'leaflet';
 import { HttpClient } from '@angular/common/http';
 import { MapDataService } from '../map-data.service';
 import { TranslateService } from "@ngx-translate/core";
+import {MatIcon} from "@angular/material/icon";
 
 interface Marker {
   color: string;
@@ -20,6 +21,9 @@ interface Marker {
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css'],
+  imports: [
+    MatIcon
+  ],
   standalone: true
 })
 export class MapComponent implements OnInit, AfterViewInit {
@@ -52,7 +56,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     console.log('Loading markers from:', jsonPath);
 
     return this.httpClient.get<{ points: Marker[] }>(jsonPath).toPromise().then((jsonData) => {
-      // Check if jsonData and jsonData.points are defined
+
       if (jsonData && Array.isArray(jsonData.points)) {
         this.markers = jsonData.points.map((point) => this.createMarker(point));
         console.log('Markers loaded', this.markers);
@@ -126,7 +130,7 @@ export class MapComponent implements OnInit, AfterViewInit {
     marker.setIcon(customIcon);
   }
 
-  private centerMap(): void {
+  public centerMap(): void {
     console.log('Centering map on markers:', this.markers);
     const latLngArray = this.markers.map((markerData) => markerData.marker.getLatLng());
     const bounds = L.latLngBounds(latLngArray);

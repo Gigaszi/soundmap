@@ -2,10 +2,12 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import * as L from 'leaflet';
 import { HttpClient } from '@angular/common/http';
 import { MapDataService } from '../map-data.service';
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
 
 interface CustomMarker {
   color: string;
   name_de: string;
+  name_en: string;
   marker: L.Marker;
 }
 
@@ -19,7 +21,9 @@ interface Point {
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css'],
+  imports: [TranslateModule],
+  standalone: true
 })
 export class MapComponent implements OnInit, AfterViewInit {
   private map!: L.Map;
@@ -27,10 +31,15 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   constructor(
     private httpClient: HttpClient,
-    private mapDataService: MapDataService
+    private mapDataService: MapDataService,
+    private translate: TranslateService,
   ) {}
 
+
   async ngOnInit() {
+    this.translate.onLangChange.subscribe(() => {
+      this.updateTooltips();
+    });
     await this.loadMarkersFromJson('assets/points.json');
 
     this.initializeMap();
@@ -52,6 +61,7 @@ export class MapComponent implements OnInit, AfterViewInit {
           this.markers = points.map((point) => ({
             color: point.color,
             name_de: point.title_de,
+            name_en: point.title_en,
             marker: L.marker(point.coordinates),
           }));
 
@@ -76,10 +86,23 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.markers.forEach((customMarker, index) => {
       const marker = customMarker.marker;
 
-      marker.bindTooltip(customMarker.name_de, {
-        permanent: false, // Tooltip appears on hover only
-        direction: 'top', // Position the tooltip above the marker
-        className: 'custom-tooltip', // Optional: add a custom class for styling
+      // Set tooltip content dynamically based on the current language
+      const getTooltipContent = () => `
+      <div class="custom-tooltip">
+        <div>
+          ${
+        this.translate.currentLang === 'en'
+          ? customMarker.name_en
+          : customMarker.name_de
+      }
+        </div>
+      </div>
+    `;
+
+      marker.bindTooltip(getTooltipContent(), {
+        permanent: false,
+        direction: 'top',
+        className: 'custom-tooltip-container',
       });
 
       marker.on('click', () => this.handleMarkerClick(index));
@@ -97,6 +120,7 @@ export class MapComponent implements OnInit, AfterViewInit {
       marker.addTo(this.map);
     });
   }
+
 
   private centerMap() {
     console.log('Centering map on markers:', this.markers);
@@ -118,4 +142,31 @@ export class MapComponent implements OnInit, AfterViewInit {
     this.mapDataService.setSelectedMarkerId(markerId);
     console.log('Clicked marker ID:', markerId);
   };
+
+  private updateTooltips(): void {
+    this.markers.forEach((customMarker) => {
+      const marker = customMarker.marker;
+
+      // Update tooltip content dynamically
+      const newTooltipContent = `
+      <div class="custom-tooltip">
+          ${
+        this.translate.currentLang === 'en'
+          ? customMarker.name_en
+          : customMarker.name_de
+      }
+        </div>
+      </div>
+    `;
+
+      marker.unbindTooltip();
+      marker.bindTooltip(newTooltipContent, {
+        permanent: false,
+        direction: 'top',
+        className: 'custom-tooltip-container',
+      });
+    })
+  }
+
 }
+

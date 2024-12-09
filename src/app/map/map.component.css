@@ -3,7 +3,7 @@
     width: 50vw;
 }
 
-.custom-tooltip {
+#custom-tooltip {
   background-color: white;
   color: black;
   border-radius: 5px;

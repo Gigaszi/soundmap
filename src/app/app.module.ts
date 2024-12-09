@@ -25,7 +25,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    MapComponent,
     HomeComponent,
     ImpressumComponent,
     SoundmapComponent,
@@ -45,7 +44,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    MapComponent
   ],
   providers: [
     provideAnimationsAsync()

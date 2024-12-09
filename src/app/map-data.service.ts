@@ -1,16 +1,14 @@
-// map-data.service.ts
-
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class MapDataService {
-  private selectedMarkerIdSubject = new Subject<number>();
-  selectedMarkerId$ = this.selectedMarkerIdSubject.asObservable();
+  private selectedMarkerDetails = new BehaviorSubject<any>(null);
+  selectedMarkerDetails$ = this.selectedMarkerDetails.asObservable();
 
-  setSelectedMarkerId(markerId: number) {
-    this.selectedMarkerIdSubject.next(markerId);
+  setSelectedMarkerDetails(details: any): void {
+    this.selectedMarkerDetails.next(details);
   }
 }

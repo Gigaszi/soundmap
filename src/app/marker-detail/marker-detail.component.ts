@@ -1,11 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MapDataService } from '../map-data.service';
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { TranslateService } from '@ngx-translate/core';
-import { TranslateModule } from '@ngx-translate/core';
-import { HttpClient } from '@angular/common/http';
+import {CommonModule} from "@angular/common";
+import {MatButtonModule} from "@angular/material/button";
+import {MatIconModule} from "@angular/material/icon";
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
+import {Component, OnInit} from "@angular/core";
+import {MapDataService} from "../map-data.service";
 
 @Component({
   selector: 'app-marker-detail',
@@ -15,65 +13,32 @@ import { HttpClient } from '@angular/common/http';
   imports: [CommonModule, MatButtonModule, MatIconModule, TranslateModule],
 })
 export class MarkerDetailComponent implements OnInit {
-  selectedMarkerId: number | null = null;
-  markerDetails: any;
+  markerDetails: any = null;
   currentAudio: HTMLAudioElement | undefined;
   showInfo: boolean = false;
   startInfo: boolean = true;
-  markersData: any[] = [];
-
-  showText() {
-    this.showInfo = !this.showInfo;
-  }
 
   constructor(
     private translate: TranslateService,
-    private mapDataService: MapDataService,
-    private httpClient: HttpClient
+    private mapDataService: MapDataService
   ) {
     this.translate.setDefaultLang('de');
     this.translate.use('de');
   }
 
   ngOnInit() {
-    this.loadMarkersData();
-
-    this.mapDataService.selectedMarkerId$.subscribe((markerId) => {
-      this.selectedMarkerId = markerId;
-      if (this.selectedMarkerId !== null) {
-        console.log('Selected Marker ID:', this.startInfo);
-        this.fetchMarkerDetails(this.selectedMarkerId);
+    this.mapDataService.selectedMarkerDetails$.subscribe((details) => {
+      this.markerDetails = details;
+      if (this.markerDetails) {
         this.startInfo = false;
+        console.log('Marker Details Received:', this.markerDetails);
+        this.playAudio(this.markerDetails.audio_path);
       }
     });
-    console.log('MarkerDetailComponent initialized:', this.selectedMarkerId);
-    console.log(this.startInfo);
   }
 
-  loadMarkersData() {
-    const jsonFilePath = 'assets/points.json';
-
-    this.httpClient.get(jsonFilePath).subscribe(
-      (data: any) => {
-        this.markersData = data.points;
-        console.log('Markers data loaded:', this.markersData);
-      },
-      (error) => {
-        console.error('Error loading markers data:', error);
-      }
-    );
-  }
-
-  fetchMarkerDetails(markerId: number): void {
-    this.markerDetails = this.markersData.find((marker) => marker.id === markerId);
-
-    if (this.markerDetails) {
-      console.log('Marker Details:', this.markerDetails);
-
-      this.playAudio(this.markerDetails.audio_path);
-    } else {
-      console.error('Marker not found!');
-    }
+  showText() {
+    this.showInfo = !this.showInfo;
   }
 
   playAudio(audioPath: string) {
@@ -82,19 +47,23 @@ export class MarkerDetailComponent implements OnInit {
       this.currentAudio.currentTime = 0;
     }
 
-    this.currentAudio = new Audio(audioPath);
-    this.currentAudio.play().catch((err) => console.error('Error playing audio:', err));
+    if (audioPath) {
+      this.currentAudio = new Audio(audioPath);
+      this.currentAudio.play().catch((err) =>
+        console.error('Error playing audio:', err)
+      );
+    }
   }
 
   getTranslatedTitle(): string {
     return this.translate.currentLang === 'en'
-      ? this.markerDetails.title_en
-      : this.markerDetails.title_de;
+      ? this.markerDetails?.name_en
+      : this.markerDetails?.name_de;
   }
 
   getTranslatedDescription(): string {
     return this.translate.currentLang === 'en'
-      ? this.markerDetails.description_en
-      : this.markerDetails.description_de;
+      ? this.markerDetails?.description_en
+      : this.markerDetails?.description_de;
   }
 }

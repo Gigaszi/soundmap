@@ -1,4 +1,17 @@
 <!-- marker-detail.component.html -->
+<div class="audio-controls">
+  <button mat-icon-button (click)="togglePlayPause()">
+    <mat-icon>{{ isPlaying ? 'pause' : 'play_arrow' }}</mat-icon>
+  </button>
+  <input
+    type="range"
+    min="0"
+    [max]="audioDuration"
+    [value]="currentTime"
+    (input)="seekAudio($event)"
+  />
+  <span>{{ formatTime(currentTime) }} / {{ formatTime(audioDuration) }}</span>
+</div>
 <button mat-icon-button (click)="showText()">
   <mat-icon>info</mat-icon>
 </button>

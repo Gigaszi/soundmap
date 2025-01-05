@@ -15,6 +15,9 @@ import {MapDataService} from "../map-data.service";
 export class MarkerDetailComponent implements OnInit {
   markerDetails: any = null;
   currentAudio: HTMLAudioElement | undefined;
+  isPlaying: boolean = false;
+  currentTime: number = 0;
+  audioDuration: number = 0;
   showInfo: boolean = false;
   startInfo: boolean = true;
 
@@ -44,15 +47,45 @@ export class MarkerDetailComponent implements OnInit {
   playAudio(audioPath: string) {
     if (this.currentAudio) {
       this.currentAudio.pause();
-      this.currentAudio.currentTime = 0;
     }
 
     if (audioPath) {
       this.currentAudio = new Audio(audioPath);
-      this.currentAudio.play().catch((err) =>
+      this.currentAudio.addEventListener('loadedmetadata', () => {
+        this.audioDuration = this.currentAudio?.duration || 0;
+      });
+      this.currentAudio.addEventListener('timeupdate', () => {
+        this.currentTime = this.currentAudio?.currentTime || 0;
+      });
+      this.currentAudio.play().then(() => (this.isPlaying = true)).catch((err) =>
         console.error('Error playing audio:', err)
       );
     }
+  }
+
+  togglePlayPause() {
+    if (this.currentAudio) {
+      if (this.isPlaying) {
+        this.currentAudio.pause();
+      } else {
+        this.currentAudio.play();
+      }
+      this.isPlaying = !this.isPlaying;
+    }
+  }
+
+  seekAudio(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const seekTime = parseFloat(input.value);
+    if (this.currentAudio) {
+      this.currentAudio.currentTime = seekTime;
+    }
+  }
+
+  formatTime(time: number): string {
+    const minutes = Math.floor(time / 60);
+    const seconds = Math.floor(time % 60);
+    return `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
   }
 
   getTranslatedTitle(): string {

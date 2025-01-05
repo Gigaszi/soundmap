@@ -7,7 +7,8 @@ import { SoundmapComponent } from './soundmap/soundmap.component';
 import { LinkPageComponent } from './link-page/link-page.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: SoundmapComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'about', component: ImpressumComponent },
   { path: 'soundmap', component: SoundmapComponent },
   { path: 'link-page', component: LinkPageComponent },

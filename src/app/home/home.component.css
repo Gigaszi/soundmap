@@ -58,4 +58,6 @@
 
   p {
     text-align: justify;
+    line-height: 2;
+    margin: 2vw;
   }

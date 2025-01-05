@@ -2,14 +2,14 @@ import {Component} from '@angular/core';
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
-import {TranslateService} from "@ngx-translate/core";
+import {TranslateModule, TranslateService} from "@ngx-translate/core";
 
 
 @Component({
   selector: 'app-navbar',
   templateUrl: 'navbar.component.html',
   standalone: true,
-  imports: [MatButtonModule, MatMenuModule, MatIconModule],
+  imports: [MatButtonModule, MatMenuModule, MatIconModule, TranslateModule],
 })
 export class NavbarComponent {
   public currentFlag: string = "assets/flags/uk.png";
@@ -17,6 +17,8 @@ export class NavbarComponent {
   constructor(private translate: TranslateService) {
     // Set default language
     this.translate.setDefaultLang('de');
+    // Use a language
+    this.translate.use('de');
   }
 
   switchLanguage() {

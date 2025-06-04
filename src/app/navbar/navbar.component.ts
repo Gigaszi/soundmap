@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import { RouterModule } from '@angular/router'
 import {MatIconModule} from '@angular/material/icon';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
@@ -9,7 +10,7 @@ import {TranslateModule, TranslateService} from "@ngx-translate/core";
   selector: 'app-navbar',
   templateUrl: 'navbar.component.html',
   standalone: true,
-  imports: [MatButtonModule, MatMenuModule, MatIconModule, TranslateModule],
+  imports: [MatButtonModule, MatMenuModule, MatIconModule, TranslateModule, RouterModule],
 })
 export class NavbarComponent {
   public currentFlag: string = "assets/flags/uk.png";

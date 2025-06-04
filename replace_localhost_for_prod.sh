@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 if [ "$#" -ne 2 ]; then
@@ -11,11 +12,11 @@ REPLACEMENT="$2"
 jq --arg rep "$REPLACEMENT" '
   walk(
     if type == "string" then
-      gsub("localhost"; $rep)
+      gsub("localhost(:[0-9]+)?"; $rep)
     else
       .
     end
   )
 ' "$FILE" > tmp.json && mv tmp.json "$FILE"
 
-echo "Replaced 'localhost' with '$REPLACEMENT' in $FILE"
+echo "Replaced 'localhost[:port]' with '$REPLACEMENT' in $FILE"

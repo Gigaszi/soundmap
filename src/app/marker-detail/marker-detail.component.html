@@ -12,20 +12,6 @@
   />
   <span>{{ formatTime(currentTime) }} / {{ formatTime(audioDuration) }}</span>
 </div>
-<button mat-icon-button (click)="showText()">
-  <mat-icon>info</mat-icon>
-</button>
-<div *ngIf="showInfo">
-  <h3>{{ 'markerDetail.recording_info_heading' | translate }}</h3>
-  <h4>{{ 'markerDetail.equipment.title' | translate }}</h4>
-  <ul>
-    <li *ngFor="let device of 'markerDetail.equipment.devices' | translate">{{ device }}</li>
-  </ul>
-  <h4>{{ 'markerDetail.microphones.title' | translate }}</h4>
-  <ul>
-    <li *ngFor="let mic of 'markerDetail.microphones.list' | translate">{{ mic }}</li>
-  </ul>
-</div>
 <div>
   <div *ngIf="markerDetails">
     <!-- Display Marker Name (Title) -->

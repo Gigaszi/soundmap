@@ -12,12 +12,16 @@
       </button>
       <button mat-menu-item [routerLink]="'/about'">
         <mat-icon>copyright</mat-icon>
-        <span>Impressum</span>
+        <span>{{ 'SOUNDMAP_IMPRINT' | translate }}</span>
       </button>
       <button mat-menu-item [routerLink]="'/link-page'">
         <mat-icon>http</mat-icon>
         <span>Links</span>
       </button>
+    <button mat-menu-item [routerLink]="'/technical-information'">
+      <mat-icon>info</mat-icon>
+      <span>{{ 'SOUNDMAP_TECH_INFO' | translate }}</span>
+    </button>
   </mat-menu>
   <button mat-icon-button aria-label="Switch language" (click)="switchLanguage()">
     <img [src]="currentFlag" alt="Flag" width="30" height="20">

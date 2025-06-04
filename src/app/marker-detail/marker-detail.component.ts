@@ -40,10 +40,6 @@ export class MarkerDetailComponent implements OnInit {
     });
   }
 
-  showText() {
-    this.showInfo = !this.showInfo;
-  }
-
   playAudio(audioPath: string) {
     if (this.currentAudio) {
       this.currentAudio.pause();

@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { ImpressumComponent } from './impressum/impressum.component';
 import { SoundmapComponent } from './soundmap/soundmap.component';
 import { LinkPageComponent } from './link-page/link-page.component';
+import {TechnicalInformationComponent} from "./technical-information/technical-information.component";
 
 const routes: Routes = [
   { path: '', component: SoundmapComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'about', component: ImpressumComponent },
   { path: 'soundmap', component: SoundmapComponent },
   { path: 'link-page', component: LinkPageComponent },
+  { path: 'technical-information', component: TechnicalInformationComponent },
 
 ];
 

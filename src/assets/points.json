@@ -139,7 +139,7 @@
     "description_en": "The carillon in the tower of the town hall is an acoustic landmark of the old town. - It is intonationally questionable, but very varied, with the three melodies played in succession changing daily.",
     "coordinates": [49.41225723374819, 8.711323895284337],
     "color": "red",
-    "image_paths": [""],
+    "image_paths": ["http://localhost:4200/assets/images/26.jpg"],
     "audio_path": "http://localhost:4200/assets/audios/14.flac"
 },
 {
@@ -335,7 +335,7 @@
     "description_de": "Das Feuerwerk zur \"Schlossbeleuchtung\" stellt eines der größten Spektakel im Jahreslauf der Stadt dar. Es findet meist drei Mal in den Sommermonaten statt; Tausende strömen dazu auf die Neckarwiesen und in die Altstadt. In der Regel folgt es einer bestimmten Choreographie: Nach einigen ersten Donnerschlägen erfolgt Stillte, in der man aus der Ferne einen Trompeter „Ich hab` mein Herz in Heidelberg verloren\" spielen hört; danach folgt für fast eine halbe Stunde eigentliche Feuerwerk. Die vorliegende Aufnahme entstand im August 2023 auf dem Dachboden der Heiliggeistkirche  -  Dank an Christoph Andreas Schäfer und Mirko Diepen.",
     "title_en": "\"Castle Illumination\" fireworks",
     "description_en": "The \"Schlossbeleuchtung\" fireworks display is one of the biggest spectacles in the city's annual calendar. It usually takes place three times during the summer months, with thousands flocking to the Neckar meadows and the Old Town. It usually follows a certain choreography: after a few initial thunderclaps, there is silence, during which a trumpeter can be heard playing \"Ich hab' mein Herz in Heidelberg verloren\" from a distance; this is followed by the actual fireworks for almost half an hour. This recording was made in August 2023 in the attic of the Heiliggeistkirche - thanks to Christoph Andreas Schäfer and Mirko Diepen.",
-    "coordinates": [49.41239893481959, 8.709919789229957],
+    "coordinates": [49.41223405950519, 8.71026712970617],
     "color": "green",
     "image_paths": ["http://localhost:4200/assets/images/33.jpg"],
     "audio_path": "http://localhost:4200/assets/audios/33.flac"

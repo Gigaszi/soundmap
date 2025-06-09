@@ -394,5 +394,38 @@
     "color": "green",
     "image_paths": ["http://localhost:4200/assets/images/39.jpg"],
     "audio_path": "http://localhost:4200/assets/audios/39.flac"
-}
+},
+  {
+    "id": 40,
+    "title_de": "Hauptbahnhof",
+    "description_de": "Ein Hörspaziergang durch den Heidelberger Hauptbahnhof an einem Werktag – was erkennen Sie alles wieder? Binaurale/räumliche Aufnahme, am besten mit Kopfhörern anhören!",
+    "title_en": "Heidelberg Central Station",
+    "description_en": "A sound walk through Heidelberg Central Station on a weekday - what do you recognise? Binaural/spatial recording, best listened to with headphones!",
+    "coordinates": [49.403922081599006, 8.672519646614212],
+    "color": "blue",
+    "image_paths": ["http://localhost:4200/assets/images/40.jpg"],
+    "audio_path": "http://localhost:4200/assets/audios/40.flac"
+  },
+  {
+    "id": 41,
+    "title_de": "Geigenbauwerkstatt Matthias Kohl",
+    "description_de": "Diese Aufnahme erzählt eine doppelte kleine Geschichte: Ein klanglicher Streifzug durch den Arbeitsalltag in einer Geigenbauwerkstatt ebenso wie durch die Etappen der Entstehung einer Geige – zuschneiden, sägen, hobeln, feilen, verleimen, lackieren, polieren, prüfen auf offene Stellen, schließlich: Probespielen.\nHerzlichen Dank an Sonja de Bruyn und Matthias Kohl",
+    "title_en": "Matthias Kohl violin making workshop",
+    "description_en": "This recording tells a double little story: A sonic journey through the daily work routine in a violin making workshop as well as through the stages of creating a violin - cutting, sawing, planing, filing, gluing, varnishing, polishing, checking for open spots, and finally: test playing.\nMany thanks to Sonja de Bruyn and Matthias Kohl",
+    "coordinates": [49.41224447944416, 8.70216145528233],
+    "color": "blue",
+    "image_paths": ["http://localhost:4200/assets/images/41.jpg"],
+    "audio_path": "http://localhost:4200/assets/audios/41.flac"
+  },
+  {
+    "id": 42,
+    "title_de": "Der Zoo",
+    "description_de": "Es lohnt sich, den Zoo mal mit geschlossenen Augen zu durchqueren und sich nur von den Geräuschen leiten zu lassen – angefangen mit Tieren vom Bauernhof, über winzige und riesige Vögel, an den Robben vorbei und zu den Löwen. Und als eine kleine akustische Seltenheit: Tigerbabys.",
+    "title_en": "The Zoo",
+    "description_en": "It's worth crossing the zoo with your eyes closed and letting yourself be guided only by the sounds - starting with animals from the farm, through tiny and giant birds, past the seals and on to the lions. And as a small acoustic rarity: tiger cubs.",
+    "coordinates": [49.41522714921227, 8.663992626434464],
+    "color": "red",
+    "image_paths": ["http://localhost:4200/assets/images/42.jpg"],
+    "audio_path": "http://localhost:4200/assets/audios/42.flac"
+  }
 ]}

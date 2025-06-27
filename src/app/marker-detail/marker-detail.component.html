@@ -12,7 +12,7 @@
   />
   <span>{{ formatTime(currentTime) }} / {{ formatTime(audioDuration) }}</span>
 </div>
-<div>
+<div [ngClass]="{ 'startInfo': startInfo, 'pinSelected': !startInfo }">
   <div *ngIf="markerDetails">
     <!-- Display Marker Name (Title) -->
     <h2>{{ getTranslatedTitle() }}</h2>
